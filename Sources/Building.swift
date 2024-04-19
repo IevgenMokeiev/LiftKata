@@ -3,9 +3,11 @@
 import Foundation
 
 class Building {
-    let lifts: [Lift]
+    let floors : [Floor]
+    let lift: Lift
     
-    init(lifts: [Lift]) {
-        self.lifts = lifts
+    init(floors: [Floor], lift: Lift) {
+        self.floors = floors
+        self.lift = lift
     }
 }

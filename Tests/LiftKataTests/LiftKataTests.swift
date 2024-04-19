@@ -18,25 +18,37 @@ class LiftKataTests: XCTestCase {
     
     func test_whenCalledUpTo3_andLiftIs0_thenMoveToFloor() {
         lift = Lift(currentFloor: 0)
-        XCTAssertTrue(lift.move(sourceFloor: 3, direction: .up))
+        XCTAssertTrue(lift.callTo(callFloor: 3, direction: .up))
         XCTAssertEqual(lift.currentFloor, 3)
     }
     
     func test_whenCalledUpTo0_andLiftIs3_thenDontMoveToFloor() {
         lift = Lift(currentFloor: 3)
-        XCTAssertFalse(lift.move(sourceFloor: 0, direction: .up))
+        XCTAssertFalse(lift.callTo(callFloor: 0, direction: .up))
         XCTAssertEqual(lift.currentFloor, 3)
     }
     
     func test_whenCalledDownTo0_andLiftIs3_thenMoveToFloor() {
         lift = Lift(currentFloor: 3)
-        XCTAssertTrue(lift.move(sourceFloor: 0, direction: .down))
+        XCTAssertTrue(lift.callTo(callFloor: 0, direction: .down))
         XCTAssertEqual(lift.currentFloor, 0)
     }
     
     func test_whenCalledDownTo3_andLiftIs0_thenDontMoveToFloor() {
         lift = Lift(currentFloor: 0)
-        XCTAssertFalse(lift.move(sourceFloor: 3, direction: .down))
+        XCTAssertFalse(lift.callTo(callFloor: 3, direction: .down))
         XCTAssertEqual(lift.currentFloor, 0)
+    }
+    
+    func test_whenPassengerRequestsFloor_thenDelivers() {
+        lift = Lift(currentFloor: 3)
+        lift.moveTo(destinationFloor: 2)
+        XCTAssertEqual(lift.currentFloor, 2)
+    }
+    
+    func test_whenLiftArrives_thenDoorsOpened() {
+        lift = Lift(currentFloor: 3)
+        lift.callTo(callFloor: 0, direction: .down)
+        XCTAssertTrue(lift.doorsOpened)
     }
 }
