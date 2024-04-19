@@ -10,4 +10,8 @@ class Building {
         self.floors = floors
         self.lift = lift
     }
+    
+    func simulate() {
+        
+    }
 }
